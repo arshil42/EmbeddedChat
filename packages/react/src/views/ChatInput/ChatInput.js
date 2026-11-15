@@ -430,10 +430,7 @@ const ChatInput = ({ scrollToBottom, clearUnreadDividerRef }) => {
     const editMessageId = editMessage._id;
     setEditMessage({});
 
-    const res = await RCInstance.updateMessage(
-      editMessageId,
-      message.replace(/\n/g, '\\n')
-    );
+    const res = await RCInstance.updateMessage(editMessageId, message);
     if (!res.success) {
       handleSendError('Error editing message, login again');
     }
