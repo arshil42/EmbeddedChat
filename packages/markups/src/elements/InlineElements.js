@@ -11,6 +11,7 @@ import ColorElement from './ColorElement';
 import LinkSpan from './LinkSpan';
 import UserMention from '../mentions/UserMention';
 import TimestampElement from './TimestampElement';
+import ImageElement from './ImageElement';
 
 const InlineElements = ({ contents }) =>
   contents.map((content, index) => {
@@ -57,6 +58,15 @@ const InlineElements = ({ contents }) =>
 
       case 'TIMESTAMP':
         return <TimestampElement key={index} contents={content.value} />;
+
+      case 'IMAGE':
+        return (
+          <ImageElement
+            key={index}
+            src={content.value.src.value}
+            alt={content.value.label}
+          />
+        );
 
       default:
         return null;
