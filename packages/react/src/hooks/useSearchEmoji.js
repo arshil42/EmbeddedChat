@@ -20,8 +20,9 @@ const useSearchEmoji = (
         return;
       }
 
-      // Check if user is typing emoji syntax (:emoji:)
-      const emojiMatch = message.match(/:([a-zA-Z0-9_+-]*?)$/);
+      // Emoji syntax (:emoji:) starts at the beginning of the message or after
+      // a space, as in Rocket.Chat, so a time such as 12:00 does not open it.
+      const emojiMatch = message.match(/(?:^|\s):([a-zA-Z0-9_+-]*?)$/);
 
       if (emojiMatch) {
         const query = emojiMatch[1].toLowerCase();
